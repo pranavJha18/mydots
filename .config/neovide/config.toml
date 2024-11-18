@@ -1,0 +1,14 @@
+
+[font]
+size = 14.0
+hinting = "full"
+edging = "antialias"
+
+[[font.normal]]
+family = "JetBrainsMono Nerd Font"
+style = "W700"
+
+[[font.bold]]
+family = "JetBrainsMono Nerd Font"
+style = "W900"
+

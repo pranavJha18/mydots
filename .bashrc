@@ -1,0 +1,20 @@
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
+alias cf='z ~/codeforces'
+alias ff='fastfetch'
+alias e='exit'
+alias src='source ~/.zshrc'
+alias ..='cd ..'
+alias cls='clear'
+alias spy='sudo pacman -Syu'
+alias spd='sudo pacman -S'
+alias cl='clang'
+alias clp='clang++'
+alias jr='java '
+alias jc='javac'
+
