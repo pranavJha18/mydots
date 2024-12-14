@@ -13,11 +13,11 @@ function ExitSession {
 Set-Alias e ExitSession
 Set-Alias ls lsd
 # Equivalent aliases
-Set-Alias l "lsd"       # 'lsd' is assumed to be the command installed earlier
 Set-Alias ff "fastfetch"
 Function la { lsd -a }  # Alias for 'ls -a'
 Function lla { lsd -la } # Alias for 'ls -la'
 Function lt { lsd --tree } # Alias for 'ls --tree'
+Function l {lsd -l}
 
 function which ($command) { 
   Get-Command -Name $command -ErrorAction SilentlyContinue | 
