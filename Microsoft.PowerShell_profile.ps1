@@ -3,21 +3,26 @@ using namespace System.Management.Automation.Language
 
 oh-my-posh init pwsh | Invoke-Expression
 
-oh-my-posh init pwsh --config 'C:\Users\prana\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_lean.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config 'C:\Users\prana\AppData\Local\Programs\oh-my-posh\themes\gruvbox.omp.json' | Invoke-Expression
 
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 function ExitSession {
   exit
 }
+
 Set-Alias e ExitSession
 Set-Alias ls lsd
 # Equivalent aliases
+Set-Alias pyt "python"
 Set-Alias ff "fastfetch"
+Set-Alias ci "code-insiders"
 Function la { lsd -a }  # Alias for 'ls -a'
 Function lla { lsd -la } # Alias for 'ls -la'
 Function lt { lsd --tree } # Alias for 'ls --tree'
 Function l {lsd -l}
+Function ..{cd ..}
+Function ...{cd ../..}
 
 function which ($command) { 
   Get-Command -Name $command -ErrorAction SilentlyContinue | 
@@ -709,3 +714,20 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+t `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("dotnet test")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+
+function Search-History {
+    $historyFile = "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+    if (Test-Path $historyFile) {
+        $selectedCommand = Get-Content $historyFile | Sort-Object -Unique | fzf --height 100% --reverse --inline-info
+        if ($selectedCommand) {
+            $selectedCommand | Set-Clipboard
+            Write-Host "Command copied to clipboard. Press Ctrl+V to paste it." -ForegroundColor Green
+        }
+    } else {
+        Write-Host "No history file found!" -ForegroundColor Red
+    }
+}
+
+Set-PSReadLineKeyHandler -Key 'Ctrl+r' -ScriptBlock { Search-History }
