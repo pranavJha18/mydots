@@ -1,34 +1,29 @@
 general.import = [
-  "~/.config/alacritty/themes/themes/tokyo_night.toml"
+  "C:/Users/prana/AppData/Roaming/alacritty/themes/themes/catppuccin_mocha.toml"
 ]
 
 [env]
 TERM = "xterm-256color"
 
+[terminal.shell]
+program = "wsl.exe"
+args = ["--cd","~"]
+
 [window]
-#padding.x = 8
-#padding.y = 8
-
 dynamic_padding = true
+dynamic_title = false
+title = "Welcome to the work environment"
 
-dimensions = { columns = 124, lines = 31 }
-
-#opacity  = 0.90
-#blur = true
-
-#startup_mode = "Fullscreen"
-
-option_as_alt = "Both"
-
-#decorations = "None"
+dimensions = { columns = 130, lines = 32 }
+position = { x = 40, y = 15 } 
+opacity  = 0.93
 
 [selection]
 save_to_clipboard = true
 
 [font]
-normal.family = "JetBrainsMono Nerd Font"
-normal.style = "Bold"
-
+normal.family = "JetBrainsMono NF"
+normal.style = "ExtraBold"
 size = 14
 
 [colors]
