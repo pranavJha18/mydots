@@ -22,6 +22,10 @@ Function lt { lsd --tree } # Alias for 'ls --tree'
 Function l {lsd -l}
 Function ..{cd ..}
 Function ...{cd ../..}
+Function hxp {hx $PROFILE}
+Function fps {fzf --preview 'bat --color=always {}'}
+Function fpc {code $(fzf --preview='bat --color=always {}')}
+Function fph {hx $(fzf --preview='bat --color=always {}' )}
 
 function which ($command) { 
   Get-Command -Name $command -ErrorAction SilentlyContinue | 
@@ -36,6 +40,16 @@ Set-PSReadLineOption -EditMode Windows
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+
+function y {
+    $tmp = [System.IO.Path]::GetTempFileName()
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp -Encoding UTF8
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath ([System.IO.Path]::GetFullPath($cwd))
+    }
+    Remove-Item -Path $tmp
+}
 
 # Create a function to reload the profile with error handling and feedback
 function Reload-PowerShellProfile {
