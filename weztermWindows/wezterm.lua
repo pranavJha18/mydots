@@ -27,7 +27,7 @@ config.front_end = "WebGpu"
 config.enable_wayland = false
 webgpu_preferred_adapter = {
 	name = "Intel(R) UHD Graphics", -- Make sure this matches your GPU name
-	backend = "Dx12",              -- Use DirectX 12 for best performance
+	backend = "Dx12", -- Use DirectX 12 for best performance
 }
 --Smooth Scrolling & rendering optimizations:->
 config.animation_fps = 120
@@ -50,6 +50,23 @@ wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
 	window:gui_window():set_position(50, 4)
 end)
+
+-- This is used to set an image as my background
+config.background = {
+	{
+		source = { File = { path = "C:/Users/prana/mydots/Pictures/pastelMountain.jpg", speed = 0.2 } },
+		opacity = 1,
+		width = "100%",
+		hsb = {
+			brightness = 0.03,
+			hue = 1,
+			saturation = 1,
+		},
+	},
+}
+
+-- Enable the kitty graphics module
+config.enable_kitty_graphics = true
 
 -- Command Palette:->
 config.command_palette_font_size = 15
