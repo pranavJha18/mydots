@@ -63,6 +63,11 @@
       "keyColor": "green"
     },
     {
+      "type": "swap",
+      "key": "   ",
+      "keyColor": "blue"
+    },
+    {
       "type": "command",
       "key": "  󱦟 ",
       "keyColor": "cyan",
